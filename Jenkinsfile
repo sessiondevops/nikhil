@@ -30,8 +30,8 @@ pipeline {
 					def projectArtifactId = pom.artifactId;
 					def projectGroupId = pom.groupId;
 					def projectVersion = pom.version;
-					//echo  ${projectArtifactId} ${projectVersion}
-					nexusArtifactUploader artifacts: [[artifactId: '${projectArtifactId}', classifier: '', file: 'target/"${projectArtifactId}"-"${projectVersion}".war', type: 'war']], credentialsId: 'Nexus_Cred', groupId: 'com.marsh', nexusUrl: '192.168.0.101:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'java_Nexus_snap', version: '${projectVersion}'
+					//echo  "${projectArtifactId} ${projectVersion}"
+					nexusArtifactUploader artifacts: [[artifactId: '${projectArtifactId}', classifier: '', file: 'target/${projectArtifactId}-${projectVersion}.war', type: 'war']], credentialsId: 'Nexus_Cred', groupId: 'com.marsh', nexusUrl: '192.168.0.101:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'java_Nexus_snap', version: '${projectVersion}'
                 }				
                     
             }
