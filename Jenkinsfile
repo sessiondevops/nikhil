@@ -22,7 +22,7 @@ pipeline {
 					bat 'mvn clean install'
 				}
 			}
-		} */
+		} 
 		stage("Nexus Upload") {
 			steps {
 				script {
