@@ -1,3 +1,5 @@
+def pom;
+
 pipeline {
     agent {
         label "master"
@@ -24,7 +26,7 @@ pipeline {
 		stage("Nexus Upload") {
 			steps {
 				script {
-					pom = readMavenPom(file: 'pom.xml')
+					pom = readMavenPom file: ''
 					projectArtifactId = pom.getArtifactId()
 					projectGroupId = pom.getGroupId()
 					projectVersion = pom.getVersion()
