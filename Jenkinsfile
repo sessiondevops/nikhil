@@ -24,7 +24,7 @@ pipeline {
 		stage("Nexus Upload") {
 			steps {
 				script {
-					pom = readMavenPom file: 'pom.xml'
+					pom = readMavenPom(file: 'pom.xml')
 					projectArtifactId = pom.getArtifactId()
 					projectGroupId = pom.getGroupId()
 					projectVersion = pom.getVersion()
