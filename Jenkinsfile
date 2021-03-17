@@ -8,7 +8,7 @@ pipeline {
         maven "Maven"
     }
 	stages {
-		stage("Check Out") {
+		/*stage("Check Out") {
 			steps {
 				script {
 					checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'Nexus_Cred', url: 'https://github.com/sessiondevops/nexus.git']]])
@@ -16,13 +16,13 @@ pipeline {
 				}
 			}
 		}
-		stage("Build") {
+		/*stage("Build") {
 			steps {
 				script {
 					bat 'mvn clean install'
 				}
 			}
-		}
+		} */
 		stage("Nexus Upload") {
 			steps {
 				script {
@@ -30,7 +30,8 @@ pipeline {
 					def projectArtifactId = pom.artifactId;
 					def projectGroupId = pom.groupId;
 					def projectVersion = pom.version;
-					nexusArtifactUploader artifacts: [[artifactId: 'et2', classifier: '', file: 'target/${projectArtifactId}-${projectVersion}.war', type: 'war']], credentialsId: 'Nexus_Cred', groupId: 'com.marsh', nexusUrl: '192.168.0.101:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'java_Nexus_snap', version: '${projectVersion}'
+					echo " ${projectArtifactId} ${projectVersion}"
+					//nexusArtifactUploader artifacts: [[artifactId: 'et2', classifier: '', file: 'target/${projectArtifactId}-${projectVersion}.war', type: 'war']], credentialsId: 'Nexus_Cred', groupId: 'com.marsh', nexusUrl: '192.168.0.101:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'java_Nexus_snap', version: '${projectVersion}'
                 }				
                     
             }
