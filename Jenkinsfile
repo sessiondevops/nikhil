@@ -8,7 +8,7 @@ pipeline {
         maven "Maven"
     }
 	stages {
-		/*stage("Check Out") {
+		stage("Check Out") {
 			steps {
 				script {
 					checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'Nexus_Cred', url: 'https://github.com/sessiondevops/nexus.git']]])
@@ -16,7 +16,7 @@ pipeline {
 				}
 			}
 		}
-		/*stage("Build") {
+		stage("Build") {
 			steps {
 				script {
 					bat 'mvn clean install'
