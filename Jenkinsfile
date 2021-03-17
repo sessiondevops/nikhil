@@ -1,5 +1,3 @@
-def pom;
-
 pipeline {
     agent {
         label "master"
@@ -26,12 +24,23 @@ pipeline {
 		stage("Nexus Upload") {
 			steps {
 				script {
-					pom = readMavenPom file: ''
-					def projectArtifactId = pom.artifactId;
-					def projectGroupId = pom.groupId;
-					def projectVersion = pom.version;
+					def pom = readMavenPom file: ''
 					//echo  "${projectArtifactId} ${projectVersion}"
-					nexusArtifactUploader artifacts: [[artifactId: '${projectArtifactId}', classifier: '', file: "target/${projectArtifactId}-${projectVersion}.war", type: 'war']], credentialsId: 'Nexus_Cred', groupId: 'com.marsh', nexusUrl: '192.168.0.101:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'java_Nexus_snap', version: '${projectVersion}'
+					nexusArtifactUploader artifacts: [
+						[
+							artifactId: '${projectArtifactId}', 
+							classifier: '', 
+							file: "target/${pom.artifactId}-${pom.version}.war", 
+							type: 'war'
+						]
+					], 
+						credentialsId: 'Nexus_Cred', 
+						groupId: 'com.marsh', 
+						nexusUrl: '192.168.0.101:8081', 
+						nexusVersion: 'nexus3', 
+						protocol: 'http', 
+						repository: 'java_Nexus_snap', 
+						version: "${pom.version}"
                 }				
                     
             }
