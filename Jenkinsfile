@@ -27,10 +27,10 @@ pipeline {
 			steps {
 				script {
 					pom = readMavenPom file: ''
-					projectArtifactId = pom.getArtifactId()
-					projectGroupId = pom.getGroupId()
-					projectVersion = pom.getVersion()
-					projectName = pom.getName()
+					def projectArtifactId = pom.getArtifactId()
+					def projectGroupId = pom.getGroupId()
+					def projectVersion = pom.getVersion()
+					def projectName = pom.getName()
 					nexusArtifactUploader artifacts: [[artifactId: 'et2', classifier: '', file: 'target/${projectArtifactId}-${projectVersion}.war', type: 'war']], credentialsId: 'Nexus_Cred', groupId: 'com.marsh', nexusUrl: '192.168.0.101:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'java_Nexus_snap', version: '${projectVersion}'
                 }				
                     
