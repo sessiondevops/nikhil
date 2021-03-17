@@ -30,7 +30,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>et2-${project.version}</finalName>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 		<pluginManagement><!-- lock down plugins versions to avoid using Maven 
 				defaults (may be moved to parent pom) -->
 			<plugins>
