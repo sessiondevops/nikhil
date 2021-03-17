@@ -28,7 +28,7 @@ pipeline {
 					//echo  "${projectArtifactId} ${projectVersion}"
 					nexusArtifactUploader artifacts: [
 						[
-							artifactId: '${projectArtifactId}', 
+							artifactId: "${pom.artifactId}", 
 							classifier: '', 
 							file: "target/${pom.artifactId}-${pom.version}.war", 
 							type: 'war'
