@@ -23,7 +23,7 @@ pipeline {
 		} 
 		stage('SonarQube analysis') {
 			steps {
-				mvn sonar:sonar -Dsonar.login='e92ce7d8e19007c251c71cb9b1782df3cc93f853'
+				mvn sonar:sonar -Dsonar.host.url=http://3.131.36.103:9000/ -Dsonar.login='e92ce7d8e19007c251c71cb9b1782df3cc93f853'
 				}
 			}
 		stage("Nexus Upload") {
