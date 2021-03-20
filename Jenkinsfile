@@ -27,7 +27,7 @@ pipeline {
 					def pom = readMavenPom file: ''
 					//echo  "${projectArtifactId} ${projectVersion}"
 					def nexusRepoName = pom.version.endsWith("SNAPSHOT") ? "et2-snapshot" : "et2-release"
-					/*nexusArtifactUploader artifacts: [
+					nexusArtifactUploader artifacts: [
 						[
 							artifactId: "${pom.artifactId}", 
 							classifier: '', 
@@ -37,12 +37,11 @@ pipeline {
 					], 
 						credentialsId: 'Nexus_Cred', 
 						groupId: 'com.marsh', 
-						nexusUrl: '52.15.81.117:8081', 
+						nexusUrl: 'ec2-52-15-81-117.us-east-2.compute.amazonaws.com:8081', 
 						nexusVersion: 'nexus3', 
 						protocol: 'http', 
 						repository: 'et2-Snapshot', 
-						version: "${pom.version}"*/
-					nexusArtifactUploader credentialsId: 'Nexus_cred', groupId: 'com.marsh', nexusUrl: '52.15.81.117:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'et2-Snapshot', version: '${pom.version}'
+						version: "${pom.version}"
                 }				
                     
             }
