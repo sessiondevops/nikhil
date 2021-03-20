@@ -27,7 +27,7 @@ pipeline {
 					def pom = readMavenPom file: ''
 					//echo  "${projectArtifactId} ${projectVersion}"
 					def nexusRepoName = pom.version.endsWith("SNAPSHOT") ? "et2-snapshot" : "et2-release"
-					nexusArtifactUploader artifacts: [
+					/*nexusArtifactUploader artifacts: [
 						[
 							artifactId: "${pom.artifactId}", 
 							classifier: '', 
@@ -41,7 +41,8 @@ pipeline {
 						nexusVersion: 'nexus3', 
 						protocol: 'http', 
 						repository: 'et2-Snapshot', 
-						version: "${pom.version}"
+						version: "${pom.version}"*/
+					nexusArtifactUploader credentialsId: 'Nexus_cred', groupId: 'com.marsh', nexusUrl: '52.15.81.117:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'et2-Snapshot', version: '${pom.version}'
                 }				
                     
             }
@@ -51,5 +52,5 @@ pipeline {
         always {
             deleteDir() /* clean up our workspace 
         }
-    }*/
+    }
 }
