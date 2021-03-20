@@ -47,4 +47,9 @@ pipeline {
 		}
 		
 	}
+	post {
+        always {
+            deleteDir() /* clean up our workspace 
+        }
+	}	
 }
