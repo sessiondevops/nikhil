@@ -36,10 +36,10 @@ pipeline {
 					], 
 						credentialsId: 'Nexus_Cred', 
 						groupId: 'com.marsh', 
-						nexusUrl: '192.168.0.101:8081', 
+						nexusUrl: '52.15.81.117:8081', 
 						nexusVersion: 'nexus3', 
 						protocol: 'http', 
-						repository: 'java_Nexus_snap', 
+						repository: 'et2-Snapshot', 
 						version: "${pom.version}"
                 }				
                     
