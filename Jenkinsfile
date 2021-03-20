@@ -25,8 +25,9 @@ pipeline {
 			git 'https://github.com/sessiondevops/nexus.git'
 		}
 		stage('SonarQube analysis') {
-		withSonarQubeEnv(credentialsId: 'e92ce7d8e19007c251c71cb9b1782df3cc93f853', installationName: 'My SonarQube Server') {
-			sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+			withSonarQubeEnv(credentialsId: 'e92ce7d8e19007c251c71cb9b1782df3cc93f853', installationName: 'My SonarQube Server') {
+				sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+			}
 		}
 		stage("Nexus Upload") {
 			steps {
