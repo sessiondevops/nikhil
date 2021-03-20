@@ -24,14 +24,11 @@ pipeline {
 		stage("Nexus Upload") {
 			steps {
 				script {
-					def pom = readMavenPom file: ''
-					//echo  "${projectArtifactId} ${projectVersion}"
-					def nexusRepoName = pom.version.endsWith("SNAPSHOT") ? "et2-snapshot" : "et2-release"
 					nexusArtifactUploader artifacts: [
 						[
-							artifactId: "${pom.artifactId}", 
+							artifactId: "et2", 
 							classifier: '', 
-							file: "target/${pom.artifactId}-${pom.version}.war", 
+							file: "target/et2-0.0.3-SNAPSHOT.war", 
 							type: 'war'
 						]
 					], 
@@ -41,7 +38,7 @@ pipeline {
 						nexusVersion: 'nexus3', 
 						protocol: 'http', 
 						repository: 'et2-Snapshot', 
-						version: "${pom.version}"
+						version: "0.0.3-SNAPSHOT"
                 }				
                     
             }
