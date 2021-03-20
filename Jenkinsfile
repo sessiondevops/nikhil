@@ -26,6 +26,7 @@ pipeline {
 				script {
 					def pom = readMavenPom file: ''
 					//echo  "${projectArtifactId} ${projectVersion}"
+					def nexusRepoName = pom.version.endsWith("SNAPSHOT") ? "et2-snapshot" : "et2-release"
 					nexusArtifactUploader artifacts: [
 						[
 							artifactId: "${pom.artifactId}", 
