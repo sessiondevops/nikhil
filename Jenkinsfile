@@ -26,7 +26,6 @@ pipeline {
 				mvn sonar:sonar -Dsonar.login='e92ce7d8e19007c251c71cb9b1782df3cc93f853
 				}
 			}
-		}
 		stage("Nexus Upload") {
 			steps {
 				script {
