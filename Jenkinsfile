@@ -4,7 +4,6 @@ pipeline {
     }
     tools {
         maven "Maven"
-		sonar "sonar"
     }
 	stages {
 		stage("Check Out") {
