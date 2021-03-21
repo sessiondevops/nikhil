@@ -1,3 +1,4 @@
+def pom = readMavenPom file: ''
 pipeline {
     agent {
         label "master"
@@ -46,7 +47,7 @@ pipeline {
 		stage("Nexus Upload") {
 			steps {
 				script {
-					def pom = readMavenPom file: ''
+					
 					//echo  "${projectArtifactId} ${projectVersion}"
 					nexusArtifactUploader artifacts: [
 						[
