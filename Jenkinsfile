@@ -80,7 +80,7 @@ pipeline {
 		stage("Deploy") {
 			steps {
 				script {
-					sh "mv $workspace"/et2_new.war /opt/tomcat/webapps/et2/"
+					sh "mv $workspace/et2_new.war /opt/tomcat/webapps/et2/"
 					sh "/opt/tomcat/bin/catalina.sh start"
 				}
 			}
