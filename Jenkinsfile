@@ -71,7 +71,7 @@ pipeline {
 			steps {
 				script {
 					def pom = readMavenPom file: ''
-					sh "curl 'http://18.191.220.162:8081/repository/et2-Snapshot/com/marsh/${pom.artifactId}/${pom.version}/et2-0.0.3-20210321.143410-1.war -o /tmp/et2_new.war'"
+					sh "wget --user=admin --password=admin123 'http://18.191.220.162:8081/repository/et2-Snapshot/com/marsh/${pom.artifactId}/${pom.version}/et2-0.0.3-20210321.143410-1.war -o /tmp/et2_new.war'"
 					echo "Artifactes has been downloaded"
 				}
 			}
