@@ -1,10 +1,10 @@
 pipeline {
     agent {
         label "master"
-		label "sonar"
     }
     tools {
         maven "Maven"
+		label "sonar"
     }
 	stages {
 		stage("Check Out") {
