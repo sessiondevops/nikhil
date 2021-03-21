@@ -72,7 +72,7 @@ pipeline {
 				script {
 					def workspace = WORKSPACE
 					def pom = readMavenPom file: ''
-					sh "curl -iX GET 'http://18.191.220.162:8081/repository/et2-Snapshot/com/marsh/et2/0.0.3-SNAPSHOT/et2-0.0.3-20210321.153843-3.war' -o "$workspace"/et2_new.war"
+					sh "curl -iX GET 'http://18.191.220.162:8081/repository/et2-Snapshot/com/marsh/et2/0.0.3-SNAPSHOT/et2-0.0.3-20210321.153843-3.war' -o $workspace/et2_new.war"
 					echo "Artifactes has been downloaded"
 				}
 			}
