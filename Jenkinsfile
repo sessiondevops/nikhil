@@ -1,6 +1,7 @@
 pipeline {
     agent {
         label "master"
+		label "sonar"
     }
     tools {
         maven "Maven"
@@ -22,9 +23,8 @@ pipeline {
 			}
 		} 
 		stage('SonarQube analysis') {
-			def scannerhome = tool 'sonar';
 			withSonarQubeEnv('Sonar_Server') {
-				sh """${scannerHome}/bin/sonar-scanner -D sonar.login =admin -D sonar.password = admin"""
+				sh "/opt/sonar-scanner/bin/sonar-scanner -D sonar.login =admin -D sonar.password = admin
 			}
 		}
 		stage("Nexus Upload") {
