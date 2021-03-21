@@ -81,7 +81,12 @@ pipeline {
 		stage("Deploy") {
 			steps {
 				script {
-					sh "BUILD_ID=dontKillMe /opt/tomcat/bin/start.sh &"
+					sh ''' 
+						export /opt/tomcat/bin/catalina.sh
+						$EXEC stop
+                   		sleep 5
+                    	JENKINS_NODE_COOKIE=dontKillMe $EXEC start
+					'''
 				}
 			}
 		}
