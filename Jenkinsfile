@@ -14,35 +14,6 @@ pipeline {
 				}
 			}
 		}
-		stage("Build") {
-			steps {
-				script {
-					sh 'mvn clean install'
-				}
-			}
-		} 
-		stage('SonarQube analysis') {
-			steps {
-				script {
-					def scannerHome = tool 'sonarqube';
-					withSonarQubeEnv("sonarqube") { // If you have configured more than one global server connection, you can specify its name
-						sh "${scannerHome}/bin/sonar-scanner"
-					}
-				}
-			}
-		}
-		 stage('Quality Gates'){
-			steps {
-				script {
-					timeout(time: 1, unit: 'MINUTES') {
-						def qg = waitForQualityGate() 
-						if (qg.status != 'OK') {
-							error "Pipeline aborted due to quality gate failure: ${qg.status}"
-						}
-					}
-				}
-			}
-		}
 		stage("Nexus Upload") {
 			steps {
 				script {
@@ -64,22 +35,9 @@ pipeline {
 						repository: 'et2-Snapshot', 
 						version: "${pom.version}"
                 }				
-                    
+                 
+				echo "Version: ${projectVersion}"
             }
 		}
-		stage("Download Artificates") {
-			steps {
-				script {
-					def pom = readMavenPom file: ''
-					sh "curl -L 'http://18.191.220.162:8081/repository/et2-Snapshot/com/marsh/${pom.artifactId}/${pom.version}/et2-0.0.3-20210321.143410-1.war -o /tmp/et2_new.war'"
-					echo "Artifactes has been downloaded"
-				}
-			}
-		}
 	}
-	post {
-        always {
-            deleteDir() /* clean up our workspace */
-        }
-	}	
 }
