@@ -26,28 +26,11 @@ pipeline {
 				script {
 					def scannerHome = tool 'SonarScanner 4.0';
 					withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
-								sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar ' + 
-          							'-f all/pom.xml ' +
-          '-Dsonar.projectKey=com.huettermann:all:master ' +
-          '-Dsonar.login=$SONAR_UN ' +
-          '-Dsonar.password=$SONAR_PW ' +
-          '-Dsonar.language=java ' +
-          '-Dsonar.sources=. ' +
-          '-Dsonar.tests=. ' +
-          '-Dsonar.test.inclusions=**/*Test*/** ' +
-          '-Dsonar.exclusions=**/*Test*/**'
+						sh "${scannerHome}/bin/sonar-scanner"
 					}
 				}
 			}
 		}
-		 stage("SonarQube Quality Gate") { 
-        		timeout(time: 1, unit: 'HOURS') { 
-           		def qg = waitForQualityGate() 
-           		if (qg.status != 'OK') {
-            			 error "Pipeline aborted due to quality gate failure: ${qg.status}"
-          			 }		
-        		}
-   		 }
 		stage("Nexus Upload") {
 			steps {
 				script {
