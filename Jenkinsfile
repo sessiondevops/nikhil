@@ -81,9 +81,7 @@ pipeline {
 			steps {
 				script {
 					def pom = readMavenPom file: ''
-					echo "build id: $BUILD_ID"
 					sh "mv $workspace/${pom.artifactId}.war /opt/tomcat/webapps/et2.war"
-					sh "export BUILD_ID=dontKillMe"
 					sh "/opt/tomcat/bin/startup.sh"
 				}
 			}
