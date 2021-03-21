@@ -74,17 +74,14 @@ pipeline {
 					def workspace = WORKSPACE
 					sh "curl -iX GET 'http://18.191.220.162:8081/repository/et2-Snapshot/com/marsh/${pom.artifactId}/${pom.version}/${pom.artifactId}-*.war' -o $workspace/${pom.artifactId}.war"
 					echo "Artifactes has been downloaded"
-					sh "mv $workspace/${pom.artifactId}.war /opt/tomcat/webapps/et2.war"
+					sh "mv $workspace/${pom.artifactId}.war /usr/share/tomcat/webapps/et2.war"
 				}
 			}
 		}
 		stage("Deploy") {
 			steps {
 				script {
-					sh ''' 
-						export EXEC=/opt/tomcat/bin/catalina.sh
-						$EXEC start
-					'''
+					sh "sudo systemctl start jenkins"
 				}
 			}
 		}
