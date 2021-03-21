@@ -81,7 +81,7 @@ pipeline {
 		stage("Deploy") {
 			steps {
 				script {
-					sh "sudo systemctl start jenkins"
+					sh "sudo systemctl start tomcat"
 				}
 			}
 		}
