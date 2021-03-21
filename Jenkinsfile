@@ -61,7 +61,7 @@ pipeline {
 						nexusUrl: '18.191.220.162:8081', 
 						nexusVersion: 'nexus3', 
 						protocol: 'http', 
-						repository: 'et2-Snapshot', 
+						repository: 'et2', 
 						version: "${pom.version}"
                 }				
                     
