@@ -81,7 +81,7 @@ pipeline {
 		stage("Deploy") {
 			steps {
 				script {
-					sh "BUILD_ID=dontKillMe /opt/tomcat/bin/catalina.sh start &"
+					sh "BUILD_ID=dontKillMe /opt/tomcat/bin/start.sh &"
 				}
 			}
 		}
