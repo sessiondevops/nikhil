@@ -1,4 +1,3 @@
-def pom = readMavenPom file: '';
 pipeline {
     agent {
         label "master"
@@ -47,7 +46,7 @@ pipeline {
 		stage("Nexus Upload") {
 			steps {
 				script {
-					
+					def pom = readMavenPom file: ''
 					//echo  "${projectArtifactId} ${projectVersion}"
 					nexusArtifactUploader artifacts: [
 						[
@@ -71,6 +70,7 @@ pipeline {
 		stage("Download Artificates") {
 			steps {
 				script {
+					def pom = readMavenPom file: ''
 					def workspace = WORKSPACE
 					def pom = readMavenPom file: ''
 					sh "curl -iX GET 'http://18.191.220.162:8081/repository/et2-Snapshot/com/marsh/et2/0.0.3-SNAPSHOT/et2-*.war' -o $workspace/et2_new.war"
