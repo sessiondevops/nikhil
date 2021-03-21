@@ -81,7 +81,7 @@ pipeline {
 			steps {
 				script {
 					sh "mv $workspace/et2_new.war /opt/tomcat/webapps/et2.war"
-					sh "/opt/tomcat/bin/catalina.sh start
+					sh "/opt/tomcat/bin/startup.sh"
 				}
 			}
 		}
