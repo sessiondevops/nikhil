@@ -22,10 +22,11 @@ pipeline {
 			}
 		} 
 		stage('SonarQube analysis') {
-			steps {
-				mvn sonar:sonar -Dsonar.host.url=http://ec2-3-131-36-103.us-east-2.compute.amazonaws.com:9000/ -Dsonar.login='e92ce7d8e19007c251c71cb9b1782df3cc93f853'
-				}
+			def scannerhome = tool 'sonar';
+			withSonarQubeEnv('Sonar_Server') {
+				sh "${scannerHome}/bin/sonar-scanner -D sonar.login =admin -D sonar.password = admin
 			}
+		}
 		stage("Nexus Upload") {
 			steps {
 				script {
