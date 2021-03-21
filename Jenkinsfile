@@ -24,6 +24,7 @@ pipeline {
 		stage('SonarQube analysis') {
 			steps {
 				script {
+					echo "Analys is starting"
 					// requires SonarQube Scanner 2.8+
 					scannerHome = tool 'sonar'
 					}
