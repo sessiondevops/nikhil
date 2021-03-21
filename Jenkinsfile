@@ -22,17 +22,15 @@ pipeline {
 			}
 		} 
 		stage('SonarQube analysis') {
+			tools {
+				sonarQube 'Sonar'
+			}
 			steps {
-				script {
-					echo "Analys is starting"
-					// requires SonarQube Scanner 2.8+
-					scannerHome = tool 'sonar'
-					}
 				withSonarQubeEnv('Sonar_Server') {
-				sh "${scannerHome}/bin/sonar-scanner -D sonar.login = admin -D sonar.password = admin"
+					sh 'sonar-scanner'
 				}
 			}
-		 }
+		}
 		stage("Nexus Upload") {
 			steps {
 				script {
