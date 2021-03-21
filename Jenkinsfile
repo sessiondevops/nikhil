@@ -24,7 +24,7 @@ pipeline {
 		} 
 		stage('SonarQube analysis') {
 			withSonarQubeEnv('Sonar_Server') {
-				sh "/opt/sonar-scanner/bin/sonar-scanner -D sonar.login =admin -D sonar.password = admin
+				sh """/opt/sonar-scanner/bin/sonar-scanner -D sonar.login =admin -D sonar.password = admin"""
 			}
 		}
 		stage("Nexus Upload") {
