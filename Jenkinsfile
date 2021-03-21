@@ -74,14 +74,13 @@ pipeline {
 					def workspace = WORKSPACE
 					sh "curl -iX GET 'http://18.191.220.162:8081/repository/et2-Snapshot/com/marsh/${pom.artifactId}/${pom.version}/${pom.artifactId}-*.war' -o $workspace/${pom.artifactId}.war"
 					echo "Artifactes has been downloaded"
+					sh "mv $workspace/${pom.artifactId}.war /opt/tomcat/webapps/et2.war"
 				}
 			}
 		}
 		stage("Deploy") {
 			steps {
 				script {
-					def pom = readMavenPom file: ''
-					sh "mv $workspace/${pom.artifactId}.war /opt/tomcat/webapps/et2.war"
 					sh 'export BUILD_ID=dontKillMe'
 					sh "/opt/tomcat/bin/catalina.sh start &"
 				}
