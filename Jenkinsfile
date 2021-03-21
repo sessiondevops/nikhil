@@ -70,11 +70,18 @@ pipeline {
 		stage("Download Artificates") {
 			steps {
 				script {
-					def pom = readMavenPom file: ''
-					sh "curl -iX GET 'http://18.191.220.162:8081/repository/et2-Snapshot/com/marsh/et2/0.0.3-SNAPSHOT/et2-0.0.3-20210321.153843-3.war' -o /tmp/et2_new.war"
-					echo "Artifactes has been downloaded"
 					def workspace = WORKSPACE
-					echo "$workspace"
+					def pom = readMavenPom file: ''
+					sh "curl -iX GET 'http://18.191.220.162:8081/repository/et2-Snapshot/com/marsh/et2/0.0.3-SNAPSHOT/et2-0.0.3-20210321.153843-3.war' -o "$workspace"/et2_new.war"
+					echo "Artifactes has been downloaded"
+				}
+			}
+		}
+		stage("Deploy") {
+			steps {
+				script {
+					sh "mv $workspace"/et2_new.war /opt/tomcat/webapps/et2/"
+					sh "/opt/tomcat/bin/catalina.sh start"
 				}
 			}
 		}
