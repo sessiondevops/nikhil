@@ -82,7 +82,7 @@ pipeline {
 			steps {
 				script {
 					sh ''' 
-						export /opt/tomcat/bin/catalina.sh
+						export EXEC=/opt/tomcat/bin/catalina.sh
 						$EXEC stop
                    		sleep 5
                     	JENKINS_NODE_COOKIE=dontKillMe $EXEC start
