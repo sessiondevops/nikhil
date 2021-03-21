@@ -1,4 +1,4 @@
-def pom = readMavenPom file: ''
+def pom = readMavenPom file: '';
 pipeline {
     agent {
         label "master"
