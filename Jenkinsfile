@@ -4,7 +4,7 @@ pipeline {
     }
     tools {
         maven "Maven"
-		label "sonar"
+		sonar "sonar"
     }
 	stages {
 		stage("Check Out") {
