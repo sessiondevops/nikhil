@@ -58,7 +58,7 @@ pipeline {
 					], 
 						credentialsId: 'Nexus_Cred', 
 						groupId: "${pom.groupId}", 
-						nexusUrl: '18.191.220.162:8081', 
+						nexusUrl: '18.216.1.222:8081', 
 						nexusVersion: 'nexus3', 
 						protocol: 'http', 
 						repository: 'et2-Snapshot', 
@@ -72,7 +72,7 @@ pipeline {
 				script {
 					def pom = readMavenPom file: ''
 					def workspace = WORKSPACE
-					sh "curl -iX GET 'http://18.191.220.162:8081/repository/et2-Snapshot/com/marsh/${pom.artifactId}/${pom.version}/${pom.artifactId}-*.war' -o $workspace/${pom.artifactId}.war"
+					sh "curl -iX GET 'http://18.218.212.62:9000/repository/et2-Snapshot/com/marsh/${pom.artifactId}/${pom.version}/${pom.artifactId}-*.war' -o $workspace/${pom.artifactId}.war"
 					echo "Artifactes has been downloaded"
 					sh "mv $workspace/${pom.artifactId}.war /usr/share/tomcat/webapps/et2.war"
 				}
