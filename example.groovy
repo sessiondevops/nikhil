@@ -30,3 +30,4 @@ def exampleMethod()
     return x
   }
 }
+return x
