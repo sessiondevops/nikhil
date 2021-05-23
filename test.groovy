@@ -10,7 +10,7 @@ else
 {
     //Read and parse XML file and store it into a variable
     def InputXML = new XmlParser().parseText(inputFile.text)
-    //Find/ Filter XML nodes based on a condition
+    //Find Filter XML nodes based on a condition
     
     InputRow.each{
             //Display the value of name node from the filtered record
