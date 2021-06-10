@@ -1,1 +1,1 @@
-FROM tomcat:latest
+FROM mongo:latest
