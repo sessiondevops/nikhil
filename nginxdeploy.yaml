@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: sessiondevops/multi:7
+        image: sessiondevops/multi
         ports:
         - containerPort: 8080
